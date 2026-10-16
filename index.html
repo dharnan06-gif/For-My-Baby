@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fff0f5" />
+  <title>For My Baby 💗</title>
+  <style>
+    :root {
+      --pink: #ff6f9f;
+      --deep-pink: #e94d86;
+      --soft-pink: #fff0f5;
+      --text: #633449;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 10%, #ffe0eb 0, transparent 28%),
+        radial-gradient(circle at 90% 30%, #ffe8f0 0, transparent 25%),
+        linear-gradient(135deg, #fff8fb, #fff0f5 55%, #fff7fa);
+    }
+
+    button { font: inherit; }
+
+    .page {
+      width: min(100% - 28px, 850px);
+      margin: 0 auto;
+      padding: 28px 0 46px;
+    }
+
+    .hero-card {
+      position: relative;
+      padding: clamp(24px, 6vw, 52px) clamp(16px, 5vw, 42px);
+      overflow: hidden;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(255, 111, 159, 0.2);
+      border-radius: 30px;
+      box-shadow: 0 18px 55px rgba(205, 93, 133, 0.13);
+    }
+
+    .top-heart {
+      display: inline-grid;
+      place-items: center;
+      width: 68px;
+      height: 68px;
+      margin-bottom: 8px;
+      border-radius: 50%;
+      background: #ffe4ee;
+      font-size: 34px;
+      animation: heartbeat 1.7s ease-in-out infinite;
+    }
+
+    .eyebrow {
+      margin: 10px 0 8px;
+      color: var(--deep-pink);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      color: #d9437c;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.3rem, 8vw, 4.4rem);
+      line-height: 1.08;
+    }
+
+    .subtitle {
+      max-width: 580px;
+      margin: 17px auto 0;
+      color: #87546a;
+      font-size: clamp(0.98rem, 3vw, 1.12rem);
+      line-height: 1.8;
+    }
+
+    .letter {
+      max-width: 650px;
+      margin: 28px auto 0;
+      padding: 22px clamp(16px, 4vw, 30px);
+      text-align: left;
+      background: #fff7fa;
+      border: 1px solid #ffe0eb;
+      border-radius: 20px;
+      line-height: 1.85;
+    }
+
+    .letter p { margin: 0 0 12px; }
+    .letter p:last-child { margin-bottom: 0; }
+    .letter .dear { color: #d9437c; font-weight: 800; }
+
+    .question-block { margin-top: 30px; }
+
+    .question-block h2 {
+      margin: 0 0 8px;
+      color: #b9366a;
+      font-size: clamp(1.25rem, 4.4vw, 1.8rem);
+    }
+
+    .question-block p {
+      margin: 0;
+      color: #98677c;
+      font-size: 0.95rem;
+    }
+
+    /* Both buttons stay inside this visible area, even on small screens. */
+    .button-zone {
+      position: relative;
+      width: min(100%, 360px);
+      height: 126px;
+      margin: 16px auto 0;
+      overflow: hidden;
+      border-radius: 18px;
+    }
+
+    .choice-btn {
+      position: absolute;
+      top: 38px;
+      min-width: 112px;
+      max-width: calc(50% - 12px);
+      min-height: 48px;
+      padding: 12px 20px;
+      border: 0;
+      border-radius: 999px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 7px 18px rgba(194, 66, 117, 0.16);
+      transition: left 180ms ease, top 180ms ease, transform 180ms ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .choice-btn:focus-visible {
+      outline: 3px solid #a92d60;
+      outline-offset: 3px;
+    }
+
+    .yes-btn {
+      left: 8px;
+      background: linear-gradient(135deg, #ff78a6, #ed4f89);
+      color: white;
+    }
+
+    .yes-btn:hover { transform: translateY(-2px) scale(1.03); }
+
+    .no-btn {
+      right: 8px;
+      left: auto;
+      background: #fff;
+      color: #d94b81;
+      border: 1px solid #ffc8dc;
+    }
+
+    .tiny-text {
+      min-height: 25px;
+      margin-top: 2px;
+      color: #c44c7d;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .surprise {
+      display: none;
+      margin: 24px auto 0;
+      padding: 24px 18px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #fff0f6, #ffe1ed);
+      animation: pop-in 450ms ease both;
+    }
+
+    .surprise.show { display: block; }
+
+    .surprise h2 {
+      margin: 0 0 10px;
+      color: #d9437c;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.8rem, 6vw, 2.7rem);
+    }
+
+    .surprise p { margin: 8px 0; line-height: 1.7; }
+    .kiss-row { margin-top: 10px; font-size: 1.8rem; letter-spacing: 0.12em; }
+
+    .gallery-section { margin-top: 36px; }
+
+    .section-heading { text-align: center; }
+
+    .section-heading h2 {
+      margin: 0;
+      color: #c93e76;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+    }
+
+    .section-heading p {
+      max-width: 560px;
+      margin: 10px auto 22px;
+      color: #8e6174;
+      line-height: 1.7;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .memory-card {
+      min-width: 0;
+      padding: 9px 9px 14px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid #ffe0eb;
+      border-radius: 18px;
+      box-shadow: 0 8px 25px rgba(205, 93, 133, 0.09);
+      transform: rotate(var(--tilt, 0deg));
+    }
+
+    .memory-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 4.6;
+      object-fit: cover;
+      border-radius: 12px;
+      background: #ffe8f0;
+    }
+
+    .memory-caption {
+      margin: 10px 4px 0;
+      color: #a54470;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1rem;
+      font-style: italic;
+      text-align: center;
+    }
+
+    .photo-note {
+      margin: 17px auto 0;
+      padding: 12px 14px;
+      color: #98677c;
+      background: rgba(255,255,255,0.7);
+      border: 1px dashed #f5a9c5;
+      border-radius: 14px;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .closing {
+      margin: 30px auto 0;
+      color: #b83c70;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.25rem, 4vw, 1.65rem);
+      line-height: 1.65;
+      text-align: center;
+    }
+
+    footer {
+      padding: 25px 8px 0;
+      color: #b17b91;
+      font-size: 0.82rem;
+      text-align: center;
+    }
+
+    .floating-heart {
+      position: fixed;
+      z-index: 10;
+      bottom: -35px;
+      pointer-events: none;
+      animation: float-up 3.4s ease-in forwards;
+    }
+
+    .hidden { display: none !important; }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    @keyframes pop-in {
+      from { opacity: 0; transform: translateY(10px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes float-up {
+      0% { opacity: 0; transform: translateY(0) rotate(0deg) scale(0.7); }
+      15% { opacity: 1; }
+      100% { opacity: 0; transform: translateY(-110vh) rotate(35deg) scale(1.35); }
+    }
+
+    @media (min-width: 600px) {
+      .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    }
+
+    @media (max-width: 360px) {
+      .page { width: min(100% - 18px, 850px); }
+      .choice-btn { min-width: 100px; padding: 11px 14px; }
+      .button-zone { height: 118px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero-card" aria-labelledby="main-title">
+      <div class="top-heart" aria-hidden="true">💗</div>
+      <p class="eyebrow">A little website, made with lots of love</p>
+      <h1 id="main-title">For My Baby</h1>
+      <p class="subtitle">
+        To my favourite person, my cutest troublemaker, and the girl who makes my world brighter just by being in it. 🥹💕
+      </p>
+
+      <div class="letter">
+        <p class="dear">My sweet Baby, 💌</p>
+        <p>
+          I am sorry for hurting you and for making you feel upset. I know that just saying “sorry” cannot magically fix everything, but I truly mean it.
+        </p>
+        <p>
+          You matter so much to me. Your feelings matter, your happiness matters, and our relationship matters to me more than my ego ever will. I may not always say or do the right thing, but I want to listen, understand you better, and show you through my actions that I care.
+        </p>
+        <p>
+          If I could, I would be right beside you now, holding your hand, giving you the biggest hug, and waiting patiently until I see even the tiniest smile on your face. 🫂
+        </p>
+        <p>
+          I cannot promise I will never make a mistake. I can promise that I want to learn from them and keep trying to love you better. You are precious to me, Baby. I love you. ❤️
+        </p>
+      </div>
+
+      <div class="question-block">
+        <h2 id="question">Can I try to make you smile, Baby? 🥺</h2>
+        <p>Be honest… but please be a little kind to this poor boyfriend. 😭💗</p>
+      </div>
+
+      <div class="button-zone" id="buttonZone" aria-label="Choose your answer">
+        <button class="choice-btn yes-btn" id="yesBtn" type="button">YES 💖</button>
+        <button class="choice-btn no-btn" id="noBtn" type="button">NO 😤</button>
+      </div>
+      <div class="tiny-text" id="tinyText" aria-live="polite">Psst… the YES button comes with unlimited virtual kisses. 😘</div>
+
+      <div class="surprise" id="surprise" aria-live="polite">
+        <h2>I love you so much, Baby! 💗</h2>
+        <p>Sending you the biggest hug, a thousand kisses, and all the love in my heart. 😘🫂</p>
+        <p>You are my favourite person. Thank you for being you. I hope I can make you smile again, one little moment at a time. 💞</p>
+        <div class="kiss-row" aria-hidden="true">😘 💋 💗 💋 😘</div>
+      </div>
+    </section>
+
+    <section class="gallery-section" aria-labelledby="gallery-title">
+      <div class="section-heading">
+        <h2 id="gallery-title">Little Pieces of Us 📸</h2>
+        <p>Our memories, our silly moments, our smiles, and all the little things that make “us” special. Every photo is a reminder of how much you mean to me. 💕</p>
+      </div>
+
+      <div class="gallery" id="gallery">
+        <article class="memory-card" style="--tilt:-1deg">
+          <img src="images/1.jpg" alt="A favourite memory of us together" loading="lazy" />
+          <p class="memory-caption">My favourite person 💗</p>
+        </article>
+        <article class="memory-card" style="--tilt:1deg">
+          <img src="images/2.jpg" alt="A happy moment we shared together" loading="lazy" />
+          <p class="memory-caption">This smile of yours 🥹</p>
+        </article>
+        <article class="memory-card" style="--tilt:-1deg">
+          <img src="images/3.jpg" alt="A special memory from our time together" loading="lazy" />
+          <p class="memory-caption">Just us being us 🌷</p>
+        </article>
+        <article class="memory-card" style="--tilt:1deg">
+          <img src="images/4.jpg" alt="A sweet photo of us together" loading="lazy" />
+          <p class="memory-caption">A moment to keep forever ✨</p>
+        </article>
+        <article class="memory-card" style="--tilt:-1deg">
+          <img src="images/5.jpg" alt="Another lovely memory we made together" loading="lazy" />
+          <p class="memory-caption">My safe place 🫂</p>
+        </article>
+        <article class="memory-card" style="--tilt:1deg">
+          <img src="images/6.jpg" alt="A treasured photo of us as a couple" loading="lazy" />
+          <p class="memory-caption">More memories, please 💞</p>
+        </article>
+        <article class="memory-card" style="--tilt:-1deg">
+          <img src="images/7.jpg" alt="A fun memory from our relationship" loading="lazy" />
+          <p class="memory-caption">My favourite kind of chaos 😂</p>
+        </article>
+        <article class="memory-card" style="--tilt:1deg">
+          <img src="images/8.jpg" alt="A special photo of the two of us" loading="lazy" />
+          <p class="memory-caption">Still choosing you ❤️</p>
+        </article>
+      </div>
+
+      <p class="photo-note">
+        💡 Add your photos of <strong>both of you together</strong> to the <code>images</code> folder and name them <code>1.jpg</code>, <code>2.jpg</code>, … <code>8.jpg</code>. Keep the spelling and file extensions exactly the same. You can add more photo cards by copying one of the card blocks in the code.
+      </p>
+    </section>
+
+    <p class="closing">No matter how grumpy you are today,<br />you will always be my Baby. 💗</p>
+    <footer>Made with love, just for you. ♡</footer>
+  </main>
+
+  <script>
+    const zone = document.getElementById('buttonZone');
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const question = document.getElementById('question');
+    const tinyText = document.getElementById('tinyText');
+    const surprise = document.getElementById('surprise');
+
+    const playfulMessages = [
+      'Aiyo Baby, almost caught me! 🙈',
+      'This NO button has legs! 😂',
+      'One tiny smile, pretty please? 🥺',
+      'I owe you extra kisses now. 😘',
+      'The button is shy, just like me. 🏃💨',
+      'Baby, you are too quick! 💗',
+      'Okay okay… sending another hug! 🫂'
+    ];
+    let noCount = 0;
+
+    function positionButtonsInitially() {
+      const zoneWidth = zone.clientWidth;
+      const yesWidth = yesBtn.offsetWidth;
+      const noWidth = noBtn.offsetWidth;
+      const gap = 12;
+      const totalWidth = yesWidth + noWidth + gap;
+
+      if (totalWidth <= zoneWidth - 16) {
+        const startX = Math.max(8, (zoneWidth - totalWidth) / 2);
+        yesBtn.style.left = `${startX}px`;
+        yesBtn.style.top = '38px';
+        noBtn.style.left = `${startX + yesWidth + gap}px`;
+        noBtn.style.right = 'auto';
+        noBtn.style.top = '38px';
+      } else {
+        // On very narrow screens, put the two buttons on separate rows.
+        yesBtn.style.left = `${Math.max(4, (zoneWidth - yesWidth) / 2)}px`;
+        yesBtn.style.top = '8px';
+        noBtn.style.left = `${Math.max(4, (zoneWidth - noWidth) / 2)}px`;
+        noBtn.style.right = 'auto';
+        noBtn.style.top = '66px';
+      }
+    }
+
+    function moveNoButton() {
+      if (noBtn.classList.contains('hidden')) return;
+
+      noCount++;
+      const zoneWidth = zone.clientWidth;
+      const zoneHeight = zone.clientHeight;
+      const noWidth = noBtn.offsetWidth;
+      const noHeight = noBtn.offsetHeight;
+      const yesLeft = yesBtn.offsetLeft;
+      const yesTop = yesBtn.offsetTop;
+      const yesRight = yesLeft + yesBtn.offsetWidth;
+      const yesBottom = yesTop + yesBtn.offsetHeight;
+      const maxX = Math.max(4, zoneWidth - noWidth - 4);
+      const maxY = Math.max(4, zoneHeight - noHeight - 4);
+
+      let chosen = null;
+      // Try multiple positions and avoid covering the YES button.
+      for (let attempt = 0; attempt < 35; attempt++) {
+        const x = 4 + Math.random() * Math.max(0, maxX - 4);
+        const y = 4 + Math.random() * Math.max(0, maxY - 4);
+        const overlapsYes = !(x + noWidth < yesLeft - 8 || x > yesRight + 8 || y + noHeight < yesTop - 8 || y > yesBottom + 8);
+        chosen = { x, y };
+        if (!overlapsYes) break;
+      }
+
+      noBtn.style.right = 'auto';
+      noBtn.style.left = `${Math.min(maxX, Math.max(4, chosen.x))}px`;
+      noBtn.style.top = `${Math.min(maxY, Math.max(4, chosen.y))}px`;
+      tinyText.textContent = playfulMessages[(noCount - 1) % playfulMessages.length];
+
+      if (noCount % 3 === 0) {
+        question.textContent = 'Baby, can I earn one little smile? 🥹💗';
+      }
+    }
+
+    function createFloatingHearts() {
+      const emojis = ['💗', '💖', '💕', '😘', '💋', '❤️', '🩷'];
+      for (let i = 0; i < 26; i++) {
+        const heart = document.createElement('span');
+        heart.className = 'floating-heart';
+        heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        heart.style.left = `${Math.random() * 100}vw`;
+        heart.style.animationDelay = `${Math.random() * 1.8}s`;
+        heart.style.fontSize = `${18 + Math.random() * 24}px`;
+        document.body.appendChild(heart);
+        heart.addEventListener('animationend', () => heart.remove(), { once: true });
+      }
+    }
+
+    yesBtn.addEventListener('click', () => {
+      surprise.classList.add('show');
+      question.textContent = 'YAY! Come here, my Baby! 🥹💗';
+      tinyText.textContent = 'Virtual hugs and kisses are on their way! 😘🫂';
+      noBtn.classList.add('hidden');
+      yesBtn.textContent = 'LOTS OF LOVE 💞';
+      yesBtn.style.left = `${Math.max(4, (zone.clientWidth - yesBtn.offsetWidth) / 2)}px`;
+      yesBtn.style.top = '38px';
+      createFloatingHearts();
+      surprise.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    // Move the NO button on hover (desktop) or tap (touchscreens), while keeping it in view.
+    noBtn.addEventListener('pointerenter', (event) => {
+      if (event.pointerType === 'mouse') moveNoButton();
+    });
+    noBtn.addEventListener('pointerdown', (event) => {
+      if (event.pointerType !== 'mouse') {
+        event.preventDefault();
+        moveNoButton();
+      }
+    });
+    noBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+      moveNoButton();
+    });
+
+    window.addEventListener('resize', positionButtonsInitially);
+    positionButtonsInitially();
+  </script>
+</body>
+</html>
