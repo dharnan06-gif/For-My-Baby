@@ -284,15 +284,24 @@
 }
 
 .photo-placeholder {
-  display: flex;
+  display: none;
+  width: 100%;
+  min-height: 220px;
+  aspect-ratio: 4 / 4.6;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 20px;
+  padding: 18px;
+  border-radius: 12px;
   box-sizing: border-box;
   color: #a63d69;
-  background: linear-gradient(135deg, #ffe0ed, #fff0f6, #fce4ec);
+  background: linear-gradient(
+    135deg,
+    #ffe0ed,
+    #fff0f6,
+    #fce4ec
+  );
 }
 
 .photo-placeholder span {
@@ -301,11 +310,13 @@
 
 .photo-placeholder h3 {
   margin: 12px 0 6px;
+  font-family: Georgia, serif;
 }
 
 .photo-placeholder p {
   margin: 0;
   font-size: 14px;
+  line-height: 1.6;
 }
     .floating-heart {
       position: fixed;
@@ -399,18 +410,50 @@
         <p>Our memories, our silly moments, our smiles, and all the little things that make “us” special. Every photo is a reminder of how much you mean to me. 💕</p>
       </div>
 
-<div class="photo-card">
-  <img
-    src="images/1.jpg"
-    alt="A favorite memory of us"
-    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-  />
+<div class="gallery">
 
-  <div class="photo-placeholder" style="display:none;">
-    <span>💗</span>
-    <h3>A Favorite Memory of Us</h3>
-    <p>Every moment with you is special, Baby. 🥹</p>
+  <div class="memory-card" style="--tilt: -2deg;">
+    <img
+      src="./images/1.jpg"
+      alt="A favorite memory of us"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+    />
+    <div class="photo-placeholder">
+      <span>💗</span>
+      <h3>A Favorite Memory of Us</h3>
+      <p>Every moment with you is special, Baby. 🥹</p>
+    </div>
+    <p class="memory-caption">My favorite person 💕</p>
   </div>
+
+  <div class="memory-card" style="--tilt: 2deg;">
+    <img
+      src="./images/2.jpg"
+      alt="Another favorite memory of us"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+    />
+    <div class="photo-placeholder">
+      <span>🥹💖</span>
+      <h3>One of Our Little Moments</h3>
+      <p>My heart feels at home with you.</p>
+    </div>
+    <p class="memory-caption">My happy place 🫂</p>
+  </div>
+
+  <div class="memory-card" style="--tilt: -1deg;">
+    <img
+      src="./images/3.jpg"
+      alt="A special moment together"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+    />
+    <div class="photo-placeholder">
+      <span>😘</span>
+      <h3>A Memory I'll Keep Forever</h3>
+      <p>Just you and me, Baby. 💗</p>
+    </div>
+    <p class="memory-caption">Us, always 💞</p>
+  </div>
+
 </div>
 
       <p class="photo-note">
