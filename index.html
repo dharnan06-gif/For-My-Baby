@@ -272,6 +272,41 @@
       text-align: center;
     }
 
+    .photo-card img,
+.photo-placeholder {
+  width: 100%;
+  height: 240px;
+  border-radius: 18px;
+}
+
+.photo-card img {
+  object-fit: cover;
+}
+
+.photo-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  color: #a63d69;
+  background: linear-gradient(135deg, #ffe0ed, #fff0f6, #fce4ec);
+}
+
+.photo-placeholder span {
+  font-size: 42px;
+}
+
+.photo-placeholder h3 {
+  margin: 12px 0 6px;
+}
+
+.photo-placeholder p {
+  margin: 0;
+  font-size: 14px;
+}
     .floating-heart {
       position: fixed;
       z-index: 10;
@@ -364,40 +399,19 @@
         <p>Our memories, our silly moments, our smiles, and all the little things that make “us” special. Every photo is a reminder of how much you mean to me. 💕</p>
       </div>
 
-      <div class="gallery" id="gallery">
-        <article class="memory-card" style="--tilt:-1deg">
-          <img src="images/1.jpg" alt="A favourite memory of us together" loading="lazy" />
-          <p class="memory-caption">My favourite person 💗</p>
-        </article>
-        <article class="memory-card" style="--tilt:1deg">
-          <img src="images/2.jpg" alt="A happy moment we shared together" loading="lazy" />
-          <p class="memory-caption">This smile of yours 🥹</p>
-        </article>
-        <article class="memory-card" style="--tilt:-1deg">
-          <img src="images/3.jpg" alt="A special memory from our time together" loading="lazy" />
-          <p class="memory-caption">Just us being us 🌷</p>
-        </article>
-        <article class="memory-card" style="--tilt:1deg">
-          <img src="images/4.jpg" alt="A sweet photo of us together" loading="lazy" />
-          <p class="memory-caption">A moment to keep forever ✨</p>
-        </article>
-        <article class="memory-card" style="--tilt:-1deg">
-          <img src="images/5.jpg" alt="Another lovely memory we made together" loading="lazy" />
-          <p class="memory-caption">My safe place 🫂</p>
-        </article>
-        <article class="memory-card" style="--tilt:1deg">
-          <img src="images/6.jpg" alt="A treasured photo of us as a couple" loading="lazy" />
-          <p class="memory-caption">More memories, please 💞</p>
-        </article>
-        <article class="memory-card" style="--tilt:-1deg">
-          <img src="images/7.jpg" alt="A fun memory from our relationship" loading="lazy" />
-          <p class="memory-caption">My favourite kind of chaos 😂</p>
-        </article>
-        <article class="memory-card" style="--tilt:1deg">
-          <img src="images/8.jpg" alt="A special photo of the two of us" loading="lazy" />
-          <p class="memory-caption">Still choosing you ❤️</p>
-        </article>
-      </div>
+<div class="photo-card">
+  <img
+    src="images/1.jpg"
+    alt="A favorite memory of us"
+    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+  />
+
+  <div class="photo-placeholder" style="display:none;">
+    <span>💗</span>
+    <h3>A Favorite Memory of Us</h3>
+    <p>Every moment with you is special, Baby. 🥹</p>
+  </div>
+</div>
 
       <p class="photo-note">
         💡 Add your photos of <strong>both of you together</strong> to the <code>images</code> folder and name them <code>1.jpg</code>, <code>2.jpg</code>, … <code>8.jpg</code>. Keep the spelling and file extensions exactly the same. You can add more photo cards by copying one of the card blocks in the code.
