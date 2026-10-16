@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#fff0f5" />
   <title>For My Baby 💗</title>
+
   <style>
     :root {
       --pink: #ff6f9f;
@@ -115,7 +116,6 @@
       font-size: 0.95rem;
     }
 
-    /* Both buttons stay inside this visible area, even on small screens. */
     .button-zone {
       position: relative;
       width: min(100%, 360px);
@@ -137,7 +137,8 @@
       font-weight: 800;
       cursor: pointer;
       box-shadow: 0 7px 18px rgba(194, 66, 117, 0.16);
-      transition: left 180ms ease, top 180ms ease, transform 180ms ease;
+      transition: left 180ms ease, top 180ms ease,
+                  transform 180ms ease;
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -189,10 +190,14 @@
     }
 
     .surprise p { margin: 8px 0; line-height: 1.7; }
-    .kiss-row { margin-top: 10px; font-size: 1.8rem; letter-spacing: 0.12em; }
+
+    .kiss-row {
+      margin-top: 10px;
+      font-size: 1.8rem;
+      letter-spacing: 0.12em;
+    }
 
     .gallery-section { margin-top: 36px; }
-
     .section-heading { text-align: center; }
 
     .section-heading h2 {
@@ -213,6 +218,7 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
+      align-items: start;
     }
 
     .memory-card {
@@ -226,13 +232,42 @@
       transform: rotate(var(--tilt, 0deg));
     }
 
-    .memory-card img {
+    .memory-card img,
+    .photo-placeholder {
       display: block;
       width: 100%;
       aspect-ratio: 4 / 4.6;
-      object-fit: cover;
       border-radius: 12px;
+    }
+
+    .memory-card img {
+      object-fit: cover;
       background: #ffe8f0;
+    }
+
+    .photo-placeholder {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      text-align: center;
+      color: #a63d69;
+      background: linear-gradient(135deg, #ffe0ed, #fff0f6, #fce4ec);
+    }
+
+    .photo-placeholder span { font-size: 36px; }
+
+    .photo-placeholder h3 {
+      margin: 12px 0 6px;
+      font-family: Georgia, serif;
+      font-size: 1rem;
+    }
+
+    .photo-placeholder p {
+      margin: 0;
+      font-size: 0.82rem;
+      line-height: 1.6;
     }
 
     .memory-caption {
@@ -245,10 +280,10 @@
     }
 
     .photo-note {
-      margin: 17px auto 0;
+      margin: 20px auto 0;
       padding: 12px 14px;
       color: #98677c;
-      background: rgba(255,255,255,0.7);
+      background: rgba(255, 255, 255, 0.7);
       border: 1px dashed #f5a9c5;
       border-radius: 14px;
       font-size: 0.88rem;
@@ -272,52 +307,6 @@
       text-align: center;
     }
 
-    .photo-card img,
-.photo-placeholder {
-  width: 100%;
-  height: 240px;
-  border-radius: 18px;
-}
-
-.photo-card img {
-  object-fit: cover;
-}
-
-.photo-placeholder {
-  display: none;
-  width: 100%;
-  min-height: 220px;
-  aspect-ratio: 4 / 4.6;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 18px;
-  border-radius: 12px;
-  box-sizing: border-box;
-  color: #a63d69;
-  background: linear-gradient(
-    135deg,
-    #ffe0ed,
-    #fff0f6,
-    #fce4ec
-  );
-}
-
-.photo-placeholder span {
-  font-size: 42px;
-}
-
-.photo-placeholder h3 {
-  margin: 12px 0 6px;
-  font-family: Georgia, serif;
-}
-
-.photo-placeholder p {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.6;
-}
     .floating-heart {
       position: fixed;
       z-index: 10;
@@ -345,43 +334,65 @@
     }
 
     @media (min-width: 600px) {
-      .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+      .gallery {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
     }
 
     @media (max-width: 360px) {
       .page { width: min(100% - 18px, 850px); }
       .choice-btn { min-width: 100px; padding: 11px 14px; }
       .button-zone { height: 118px; }
+      .photo-placeholder h3 { font-size: 0.9rem; }
+      .photo-placeholder p { font-size: 0.75rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
+
 <body>
   <main class="page">
     <section class="hero-card" aria-labelledby="main-title">
       <div class="top-heart" aria-hidden="true">💗</div>
       <p class="eyebrow">A little website, made with lots of love</p>
       <h1 id="main-title">For My Baby</h1>
+
       <p class="subtitle">
-        To my favourite person, my cutest troublemaker, and the girl who makes my world brighter just by being in it. 🥹💕
+        To my favourite person, my cutest troublemaker, and the girl who
+        makes my world brighter just by being in it. 🥹💕
       </p>
 
       <div class="letter">
         <p class="dear">My sweet Baby, 💌</p>
         <p>
-          I am sorry for hurting you and for making you feel upset. I know that just saying “sorry” cannot magically fix everything, but I truly mean it.
+          I am sorry for hurting you and for making you feel upset.
+          I know that just saying “sorry” cannot magically fix everything,
+          but I truly mean it.
         </p>
         <p>
-          You matter so much to me. Your feelings matter, your happiness matters, and our relationship matters to me more than my ego ever will. I may not always say or do the right thing, but I want to listen, understand you better, and show you through my actions that I care.
+          You matter so much to me. Your feelings matter, your happiness
+          matters, and our relationship matters to me more than my ego ever
+          will. I may not always say or do the right thing, but I want to
+          listen, understand you better, and show you through my actions
+          that I care.
         </p>
         <p>
-          If I could, I would be right beside you now, holding your hand, giving you the biggest hug, and waiting patiently until I see even the tiniest smile on your face. 🫂
+          If I could, I would be right beside you now, holding your hand,
+          giving you the biggest hug, and waiting patiently until I see even
+          the tiniest smile on your face. 🫂
         </p>
         <p>
-          I cannot promise I will never make a mistake. I can promise that I want to learn from them and keep trying to love you better. You are precious to me, Baby. I love you. ❤️
+          I cannot promise I will never make a mistake. I can promise that
+          I want to learn from them and keep trying to love you better.
+          You are precious to me, Baby. I love you. ❤️
         </p>
       </div>
 
@@ -391,97 +402,173 @@
       </div>
 
       <div class="button-zone" id="buttonZone" aria-label="Choose your answer">
-        <button class="choice-btn yes-btn" id="yesBtn" type="button">YES 💖</button>
-        <button class="choice-btn no-btn" id="noBtn" type="button">NO 😤</button>
+        <button class="choice-btn yes-btn" id="yesBtn" type="button">
+          YES 💖
+        </button>
+        <button class="choice-btn no-btn" id="noBtn" type="button">
+          NO 😤
+        </button>
       </div>
-      <div class="tiny-text" id="tinyText" aria-live="polite">Psst… the YES button comes with unlimited virtual kisses. 😘</div>
+
+      <div class="tiny-text" id="tinyText" aria-live="polite">
+        Psst… the YES button comes with unlimited virtual kisses. 😘
+      </div>
 
       <div class="surprise" id="surprise" aria-live="polite">
         <h2>I love you so much, Baby! 💗</h2>
         <p>Sending you the biggest hug, a thousand kisses, and all the love in my heart. 😘🫂</p>
-        <p>You are my favourite person. Thank you for being you. I hope I can make you smile again, one little moment at a time. 💞</p>
+        <p>
+          You are my favourite person. Thank you for being you. I hope I
+          can make you smile again, one little moment at a time. 💞
+        </p>
         <div class="kiss-row" aria-hidden="true">😘 💋 💗 💋 😘</div>
       </div>
     </section>
 
     <section class="gallery-section" aria-labelledby="gallery-title">
       <div class="section-heading">
-        <h2 id="gallery-title">Little Pieces of Us 📸</h2>
-        <p>Our memories, our silly moments, our smiles, and all the little things that make “us” special. Every photo is a reminder of how much you mean to me. 💕</p>
+        <h2 id="gallery-title">Little Pieces of You 📸</h2>
+        <p>
+          Eight little reminders of the girl who means so much to me.
+          Every picture makes me smile, and every memory reminds me how
+          lucky I feel to have you in my life. 💕
+        </p>
       </div>
 
-<div class="gallery">
+      <div class="gallery">
 
-  <div class="memory-card" style="--tilt: -2deg;">
-    <img
-      src="./images/1.jpg"
-      alt="A favorite memory of us"
-      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-    />
-    <div class="photo-placeholder">
-      <span>💗</span>
-      <h3>A Favorite Memory of Us</h3>
-      <p>Every moment with you is special, Baby. 🥹</p>
-    </div>
-    <p class="memory-caption">My favorite person 💕</p>
-  </div>
+        <div class="memory-card" style="--tilt: -2deg;">
+          <img src="./images/1.jpeg" alt="Baby, my favourite girl"
+            loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="photo-placeholder">
+            <span>💗</span>
+            <h3>My Favourite Girl</h3>
+            <p>My day gets better just by seeing your smile, Baby. 🥹</p>
+          </div>
+          <p class="memory-caption">My favourite person 💕</p>
+        </div>
 
-  <div class="memory-card" style="--tilt: 2deg;">
-    <img
-      src="./images/2.jpg"
-      alt="Another favorite memory of us"
-      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-    />
-    <div class="photo-placeholder">
-      <span>🥹💖</span>
-      <h3>One of Our Little Moments</h3>
-      <p>My heart feels at home with you.</p>
-    </div>
-    <p class="memory-caption">My happy place 🫂</p>
-  </div>
+        <div class="memory-card" style="--tilt: 2deg;">
+          <img src="./images/2.jpeg" alt="A beautiful picture of Baby"
+            loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="photo-placeholder">
+            <span>🥹💖</span>
+            <h3>That Beautiful Smile</h3>
+            <p>If I could, I would save every smile of yours. 🫶</p>
+          </div>
+          <p class="memory-caption">My happy place 🫂</p>
+        </div>
 
-  <div class="memory-card" style="--tilt: -1deg;">
-    <img
-      src="./images/3.jpg"
-      alt="A special moment together"
-      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-    />
-    <div class="photo-placeholder">
-      <span>😘</span>
-      <h3>A Memory I'll Keep Forever</h3>
-      <p>Just you and me, Baby. 💗</p>
-    </div>
-    <p class="memory-caption">Us, always 💞</p>
-  </div>
+        <div class="memory-card" style="--tilt: -1deg;">
+          <img src="./images/3.jpeg" alt="A special photo of Baby"
+            loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="photo-placeholder">
+            <span>😘</span>
+            <h3>Simply Beautiful</h3>
+            <p>You will always be special to me, Baby. 💗</p>
+          </div>
+          <p class="memory-caption">My pretty girl 🌷</p>
+        </div>
 
-</div>
+        <div class="memory-card" style="--tilt: 1.5deg;">
+          <img src="./images/4.jpeg" alt="One of Baby's lovely pictures"
+            loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="photo-placeholder">
+            <span>🌸</span>
+            <h3>My Little Sunshine</h3>
+            <p>You bring warmth into my world in your own way. ☀️</p>
+          </div>
+          <p class="memory-caption">My sunshine ☀️</p>
+        </div>
+
+        <div class="memory-card" style="--tilt: -1.5deg;">
+          <img src="./images/5.jpeg" alt="A picture that reminds me of Baby"
+            loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="photo-placeholder">
+            <span>💌</span>
+            <h3>A Little Reminder</h3>
+            <p>No matter the distance, you are in my thoughts. 💕</p>
+          </div>
+          <p class="memory-caption">Always on my mind 💭</p>
+        </div>
+
+        <div class="memory-card" style="--tilt: 2deg;">
+          <img src="./images/6.jpeg" alt="Another lovely picture of Baby"
+            loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="photo-placeholder">
+            <span>🧸</span>
+            <h3>Your Boy's Soft Spot</h3>
+            <p>It's you. It has always been you, Baby. 🥹</p>
+          </div>
+          <p class="memory-caption">My soft spot 🧸</p>
+        </div>
+
+        <div class="memory-card" style="--tilt: -2deg;">
+          <img src="./images/7.jpeg" alt="A precious picture of Baby"
+            loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="photo-placeholder">
+            <span>🫶</span>
+            <h3>You Mean So Much</h3>
+            <p>I hope my actions make you feel as loved as you are. ❤️</p>
+          </div>
+          <p class="memory-caption">So precious to me ❤️</p>
+        </div>
+
+        <div class="memory-card" style="--tilt: 1deg;">
+          <img src="./images/8.jpeg" alt="One last little picture of Baby"
+            loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="photo-placeholder">
+            <span>💞</span>
+            <h3>One Last Thing, Baby</h3>
+            <p>I love you, and I really am sorry. Can we talk? 🥺</p>
+          </div>
+          <p class="memory-caption">My Baby, always 💗</p>
+        </div>
+
+      </div>
 
       <p class="photo-note">
-        💡 Add your photos of <strong>both of you together</strong> to the <code>images</code> folder and name them <code>1.jpg</code>, <code>2.jpg</code>, … <code>8.jpg</code>. Keep the spelling and file extensions exactly the same. You can add more photo cards by copying one of the card blocks in the code.
+        💗 These eight pictures are little reminders of how special you are.
+        If any picture doesn't load, a romantic message will appear in its
+        place. Make sure the files are inside the <code>images</code> folder
+        and named <code>1.jpeg</code> through <code>8.jpeg</code>.
       </p>
     </section>
 
-    <p class="closing">No matter how grumpy you are today,<br />you will always be my Baby. 💗</p>
+    <p class="closing">
+      No matter how grumpy you are today,<br>
+      you will always be my Baby. 💗
+    </p>
+
     <footer>Made with love, just for you. ♡</footer>
   </main>
 
   <script>
-    const zone = document.getElementById('buttonZone');
-    const yesBtn = document.getElementById('yesBtn');
-    const noBtn = document.getElementById('noBtn');
-    const question = document.getElementById('question');
-    const tinyText = document.getElementById('tinyText');
-    const surprise = document.getElementById('surprise');
+    const zone = document.getElementById("buttonZone");
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const question = document.getElementById("question");
+    const tinyText = document.getElementById("tinyText");
+    const surprise = document.getElementById("surprise");
 
     const playfulMessages = [
-      'Aiyo Baby, almost caught me! 🙈',
-      'This NO button has legs! 😂',
-      'One tiny smile, pretty please? 🥺',
-      'I owe you extra kisses now. 😘',
-      'The button is shy, just like me. 🏃💨',
-      'Baby, you are too quick! 💗',
-      'Okay okay… sending another hug! 🫂'
+      "Aiyo Baby, almost caught me! 🙈",
+      "This NO button has legs! 😂",
+      "One tiny smile, pretty please? 🥺",
+      "I owe you extra kisses now. 😘",
+      "The button is shy, just like me. 🏃💨",
+      "Baby, you are too quick! 💗",
+      "Okay okay… sending another hug! 🫂"
     ];
+
     let noCount = 0;
 
     function positionButtonsInitially() {
@@ -493,98 +580,142 @@
 
       if (totalWidth <= zoneWidth - 16) {
         const startX = Math.max(8, (zoneWidth - totalWidth) / 2);
+
         yesBtn.style.left = `${startX}px`;
-        yesBtn.style.top = '38px';
+        yesBtn.style.top = "38px";
+
         noBtn.style.left = `${startX + yesWidth + gap}px`;
-        noBtn.style.right = 'auto';
-        noBtn.style.top = '38px';
+        noBtn.style.right = "auto";
+        noBtn.style.top = "38px";
       } else {
-        // On very narrow screens, put the two buttons on separate rows.
-        yesBtn.style.left = `${Math.max(4, (zoneWidth - yesWidth) / 2)}px`;
-        yesBtn.style.top = '8px';
-        noBtn.style.left = `${Math.max(4, (zoneWidth - noWidth) / 2)}px`;
-        noBtn.style.right = 'auto';
-        noBtn.style.top = '66px';
+        yesBtn.style.left =
+          `${Math.max(4, (zoneWidth - yesWidth) / 2)}px`;
+        yesBtn.style.top = "8px";
+
+        noBtn.style.left =
+          `${Math.max(4, (zoneWidth - noWidth) / 2)}px`;
+        noBtn.style.right = "auto";
+        noBtn.style.top = "66px";
       }
     }
 
     function moveNoButton() {
-      if (noBtn.classList.contains('hidden')) return;
+      if (noBtn.classList.contains("hidden")) return;
 
       noCount++;
+
       const zoneWidth = zone.clientWidth;
       const zoneHeight = zone.clientHeight;
       const noWidth = noBtn.offsetWidth;
       const noHeight = noBtn.offsetHeight;
+
       const yesLeft = yesBtn.offsetLeft;
       const yesTop = yesBtn.offsetTop;
       const yesRight = yesLeft + yesBtn.offsetWidth;
       const yesBottom = yesTop + yesBtn.offsetHeight;
+
       const maxX = Math.max(4, zoneWidth - noWidth - 4);
       const maxY = Math.max(4, zoneHeight - noHeight - 4);
 
-      let chosen = null;
-      // Try multiple positions and avoid covering the YES button.
-      for (let attempt = 0; attempt < 35; attempt++) {
+      let chosen = { x: 4, y: 4 };
+
+      for (let attempt = 0; attempt < 50; attempt++) {
         const x = 4 + Math.random() * Math.max(0, maxX - 4);
         const y = 4 + Math.random() * Math.max(0, maxY - 4);
-        const overlapsYes = !(x + noWidth < yesLeft - 8 || x > yesRight + 8 || y + noHeight < yesTop - 8 || y > yesBottom + 8);
+
+        const overlapsYes = !(
+          x + noWidth < yesLeft - 8 ||
+          x > yesRight + 8 ||
+          y + noHeight < yesTop - 8 ||
+          y > yesBottom + 8
+        );
+
         chosen = { x, y };
+
         if (!overlapsYes) break;
       }
 
-      noBtn.style.right = 'auto';
-      noBtn.style.left = `${Math.min(maxX, Math.max(4, chosen.x))}px`;
-      noBtn.style.top = `${Math.min(maxY, Math.max(4, chosen.y))}px`;
-      tinyText.textContent = playfulMessages[(noCount - 1) % playfulMessages.length];
+      noBtn.style.right = "auto";
+      noBtn.style.left =
+        `${Math.min(maxX, Math.max(4, chosen.x))}px`;
+      noBtn.style.top =
+        `${Math.min(maxY, Math.max(4, chosen.y))}px`;
+
+      tinyText.textContent =
+        playfulMessages[(noCount - 1) % playfulMessages.length];
 
       if (noCount % 3 === 0) {
-        question.textContent = 'Baby, can I earn one little smile? 🥹💗';
+        question.textContent =
+          "Baby, can I earn one little smile? 🥹💗";
       }
     }
 
     function createFloatingHearts() {
-      const emojis = ['💗', '💖', '💕', '😘', '💋', '❤️', '🩷'];
+      const emojis = ["💗", "💖", "💕", "😘", "💋", "❤️", "🩷"];
+
       for (let i = 0; i < 26; i++) {
-        const heart = document.createElement('span');
-        heart.className = 'floating-heart';
-        heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        const heart = document.createElement("span");
+
+        heart.className = "floating-heart";
+        heart.textContent =
+          emojis[Math.floor(Math.random() * emojis.length)];
+
         heart.style.left = `${Math.random() * 100}vw`;
         heart.style.animationDelay = `${Math.random() * 1.8}s`;
         heart.style.fontSize = `${18 + Math.random() * 24}px`;
+
         document.body.appendChild(heart);
-        heart.addEventListener('animationend', () => heart.remove(), { once: true });
+
+        heart.addEventListener(
+          "animationend",
+          () => heart.remove(),
+          { once: true }
+        );
       }
     }
 
-    yesBtn.addEventListener('click', () => {
-      surprise.classList.add('show');
-      question.textContent = 'YAY! Come here, my Baby! 🥹💗';
-      tinyText.textContent = 'Virtual hugs and kisses are on their way! 😘🫂';
-      noBtn.classList.add('hidden');
-      yesBtn.textContent = 'LOTS OF LOVE 💞';
-      yesBtn.style.left = `${Math.max(4, (zone.clientWidth - yesBtn.offsetWidth) / 2)}px`;
-      yesBtn.style.top = '38px';
+    yesBtn.addEventListener("click", () => {
+      surprise.classList.add("show");
+
+      question.textContent = "YAY! Come here, my Baby! 🥹💗";
+      tinyText.textContent =
+        "Virtual hugs and kisses are on their way! 😘🫂";
+
+      noBtn.classList.add("hidden");
+      yesBtn.textContent = "LOTS OF LOVE 💞";
+
+      yesBtn.style.left =
+        `${Math.max(4, (zone.clientWidth - yesBtn.offsetWidth) / 2)}px`;
+      yesBtn.style.top = "38px";
+
       createFloatingHearts();
-      surprise.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      surprise.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
     });
 
-    // Move the NO button on hover (desktop) or tap (touchscreens), while keeping it in view.
-    noBtn.addEventListener('pointerenter', (event) => {
-      if (event.pointerType === 'mouse') moveNoButton();
+    noBtn.addEventListener("pointerenter", (event) => {
+      if (event.pointerType === "mouse") {
+        moveNoButton();
+      }
     });
-    noBtn.addEventListener('pointerdown', (event) => {
-      if (event.pointerType !== 'mouse') {
+
+    noBtn.addEventListener("pointerdown", (event) => {
+      if (event.pointerType !== "mouse") {
         event.preventDefault();
         moveNoButton();
       }
     });
-    noBtn.addEventListener('click', (event) => {
+
+    noBtn.addEventListener("click", (event) => {
       event.preventDefault();
       moveNoButton();
     });
 
-    window.addEventListener('resize', positionButtonsInitially);
+    window.addEventListener("resize", positionButtonsInitially);
+
     positionButtonsInitially();
   </script>
 </body>
