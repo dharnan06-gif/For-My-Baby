@@ -369,7 +369,7 @@
   border: 1px solid #ffd1e2;
   border-radius: 28px;
   box-shadow: 0 12px 35px #e98bad25;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .baby-gift h2 {
@@ -379,7 +379,9 @@
 
 .baby-gift .gift-intro {
   line-height: 1.7;
-  margin: 0 auto 22px;
+  margin: 0 auto 12px;
+  position: relative;
+  z-index: 1;
 }
 
 .gift-trigger {
@@ -396,7 +398,7 @@
   position: relative;
   width: 150px;
   height: 135px;
-  margin: 24px auto 16px;
+  margin: 12px auto 24px;
   animation: giftFloat 2s ease-in-out infinite;
 }
 
@@ -426,13 +428,14 @@
   width: 150px;
   height: 30px;
   left: 0;
-  top: 28px;
+  top: 35px;
   border-radius: 8px;
   background: #ff5f9b;
   z-index: 3;
   transform-origin: 12% 100%;
   transition: transform 0.7s ease;
 }
+
 
 .gift-box .gift-bow {
   position: absolute;
