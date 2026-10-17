@@ -357,9 +357,12 @@
     }
 
     
+
 /* ===== Baby's Interactive Gift ===== */
+
 .baby-gift {
   --gift-pink: #ff78a8;
+  width: 100%;
   max-width: 620px;
   margin: 36px auto;
   padding: 28px 18px;
@@ -370,38 +373,55 @@
   border-radius: 28px;
   box-shadow: 0 12px 35px #e98bad25;
   overflow: visible;
+  position: relative;
 }
 
 .baby-gift h2 {
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   color: #df568c;
+  line-height: 1.4;
+  overflow-wrap: break-word;
 }
 
 .baby-gift .gift-intro {
-  line-height: 1.7;
-  margin: 0 auto 12px;
   position: relative;
   z-index: 1;
+  line-height: 1.7;
+  margin: 0 auto 16px;
+  overflow-wrap: break-word;
 }
 
+/* Gift button: vertically arrange the gift and its label */
 .gift-trigger {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   width: 100%;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
   border: 0;
   background: transparent;
   cursor: pointer;
   color: inherit;
   font: inherit;
+  text-align: center;
+  -webkit-tap-highlight-color: transparent;
 }
 
+/* FIX: the gift now reserves its own space */
 .gift-box {
+  display: block;
   position: relative;
+  flex: 0 0 135px;
   width: 150px;
   height: 135px;
-  margin: 12px auto 24px;
+  margin: 8px auto 12px;
   animation: giftFloat 2s ease-in-out infinite;
 }
 
+/* Gift base */
 .gift-box .gift-base {
   position: absolute;
   width: 126px;
@@ -413,6 +433,7 @@
   box-shadow: 0 10px 15px #d75a8b25;
 }
 
+/* Vertical ribbon */
 .gift-box .gift-ribbon {
   position: absolute;
   width: 22px;
@@ -423,6 +444,7 @@
   z-index: 2;
 }
 
+/* Gift lid */
 .gift-box .gift-lid {
   position: absolute;
   width: 150px;
@@ -436,7 +458,7 @@
   transition: transform 0.7s ease;
 }
 
-
+/* Gift bow */
 .gift-box .gift-bow {
   position: absolute;
   width: 35px;
@@ -461,10 +483,12 @@
   transform: rotate(-40deg);
 }
 
+/* Open the gift lid */
 .baby-gift.is-open .gift-lid {
   transform: translate(-20px, -48px) rotate(-28deg);
 }
 
+/* Keyboard accessibility */
 .gift-trigger:focus-visible,
 .hug-again:focus-visible {
   outline: 3px solid #df568c;
@@ -472,15 +496,25 @@
   border-radius: 12px;
 }
 
+/* Text below the gift */
 .gift-tap-label {
   display: block;
-  font-weight: 700;
+  position: relative;
+  width: 100%;
+  margin: 0 auto 12px;
+  padding: 0 4px;
   color: #d94f88;
-  margin-top: 16px;
+  font-weight: 700;
+  line-height: 1.7;
+  overflow-wrap: break-word;
 }
 
+/* Hidden surprise content */
 .gift-surprise {
   display: none;
+  width: 100%;
+  min-width: 0;
+  margin-top: 12px;
   animation: surpriseIn 0.8s ease both;
 }
 
@@ -488,7 +522,9 @@
   display: block;
 }
 
+/* Hugging illustration */
 .hug-art {
+  display: block;
   width: min(100%, 300px);
   height: auto;
   margin: 14px auto;
@@ -507,17 +543,26 @@
   animation: coupleSqueeze 1.8s ease-in-out infinite;
 }
 
+/* Message below the illustration */
 .hug-message {
   font-size: 1.08rem;
   line-height: 1.8;
   padding: 0 6px;
+  overflow-wrap: break-word;
+}
+
+.hug-message p {
+  margin: 8px 0;
 }
 
 .hug-message strong {
   color: #d94f88;
 }
 
+/* Hug again button */
 .hug-again {
+  display: inline-block;
+  max-width: 100%;
   margin-top: 12px;
   padding: 12px 22px;
   border: none;
@@ -530,36 +575,97 @@
   box-shadow: 0 6px 16px #e76c9b35;
 }
 
+/* Sparkles */
 .gift-sparkle {
   display: inline-block;
   animation: sparkle 1.4s ease-in-out infinite alternate;
 }
 
+/* Animations */
 @keyframes giftFloat {
-  0%, 100% { transform: translateY(0) rotate(-1deg); }
-  50% { transform: translateY(-8px) rotate(1deg); }
+  0%, 100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
 }
 
 @keyframes surpriseIn {
-  from { opacity: 0; transform: translateY(18px) scale(.94); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @keyframes heartBeat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.16); }
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.16);
+  }
 }
 
 @keyframes coupleSqueeze {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.035); }
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.035);
+  }
 }
 
 @keyframes sparkle {
-  from { opacity: .45; transform: scale(.85) rotate(-10deg); }
-  to { opacity: 1; transform: scale(1.15) rotate(10deg); }
+  from {
+    opacity: .45;
+    transform: scale(.85) rotate(-10deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.15) rotate(10deg);
+  }
 }
 
+/* Responsive layout for mobile phones */
+@media (max-width: 480px) {
+  .baby-gift {
+    margin: 28px auto;
+    padding: 24px 14px;
+    border-radius: 22px;
+  }
+
+  .baby-gift h2 {
+    font-size: clamp(1.25rem, 5vw, 1.6rem);
+  }
+
+  .baby-gift .gift-intro {
+    font-size: 0.95rem;
+  }
+
+  .gift-box {
+    transform-origin: center;
+  }
+
+  .hug-message {
+    font-size: 1rem;
+  }
+
+  .hug-again {
+    padding: 11px 18px;
+  }
+}
+
+/* Respect reduced-motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .baby-gift *,
   .baby-gift *::before,
@@ -568,6 +674,7 @@
     transition: none !important;
   }
 }
+
 
   </style>
 </head>
