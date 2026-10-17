@@ -355,6 +355,217 @@
         transition-duration: 0.01ms !important;
       }
     }
+
+    
+/* ===== Baby's Interactive Gift ===== */
+.baby-gift {
+  --gift-pink: #ff78a8;
+  max-width: 620px;
+  margin: 36px auto;
+  padding: 28px 18px;
+  text-align: center;
+  color: #773b59;
+  background: linear-gradient(145deg, #fff0f6, #fff9fc);
+  border: 1px solid #ffd1e2;
+  border-radius: 28px;
+  box-shadow: 0 12px 35px #e98bad25;
+  overflow: hidden;
+}
+
+.baby-gift h2 {
+  margin: 0 0 10px;
+  color: #df568c;
+}
+
+.baby-gift .gift-intro {
+  line-height: 1.7;
+  margin: 0 auto 22px;
+}
+
+.gift-trigger {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+}
+
+.gift-box {
+  position: relative;
+  width: 150px;
+  height: 135px;
+  margin: 24px auto 16px;
+  animation: giftFloat 2s ease-in-out infinite;
+}
+
+.gift-box .gift-base {
+  position: absolute;
+  width: 126px;
+  height: 85px;
+  left: 12px;
+  bottom: 0;
+  border-radius: 8px 8px 15px 15px;
+  background: linear-gradient(90deg, #ff7eae, #ffb0ce);
+  box-shadow: 0 10px 15px #d75a8b25;
+}
+
+.gift-box .gift-ribbon {
+  position: absolute;
+  width: 22px;
+  height: 85px;
+  left: 64px;
+  bottom: 0;
+  background: #ffe6a6;
+  z-index: 2;
+}
+
+.gift-box .gift-lid {
+  position: absolute;
+  width: 150px;
+  height: 30px;
+  left: 0;
+  top: 28px;
+  border-radius: 8px;
+  background: #ff5f9b;
+  z-index: 3;
+  transform-origin: 12% 100%;
+  transition: transform 0.7s ease;
+}
+
+.gift-box .gift-bow {
+  position: absolute;
+  width: 35px;
+  height: 24px;
+  left: 40px;
+  top: 7px;
+  border: 8px solid #ffe6a6;
+  border-radius: 50% 50% 15% 50%;
+  transform: rotate(20deg);
+  z-index: 4;
+}
+
+.gift-box .gift-bow::after {
+  content: "";
+  position: absolute;
+  width: 35px;
+  height: 24px;
+  left: 19px;
+  top: -7px;
+  border: 8px solid #ffe6a6;
+  border-radius: 50% 50% 50% 15%;
+  transform: rotate(-40deg);
+}
+
+.baby-gift.is-open .gift-lid {
+  transform: translate(-20px, -48px) rotate(-28deg);
+}
+
+.gift-trigger:focus-visible,
+.hug-again:focus-visible {
+  outline: 3px solid #df568c;
+  outline-offset: 5px;
+  border-radius: 12px;
+}
+
+.gift-tap-label {
+  display: block;
+  font-weight: 700;
+  color: #d94f88;
+  margin-top: 16px;
+}
+
+.gift-surprise {
+  display: none;
+  animation: surpriseIn 0.8s ease both;
+}
+
+.baby-gift.is-open .gift-surprise {
+  display: block;
+}
+
+.hug-art {
+  width: min(100%, 300px);
+  height: auto;
+  margin: 14px auto;
+  overflow: visible;
+}
+
+.hug-art .hug-heart {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: heartBeat 1s ease-in-out infinite;
+}
+
+.hug-art .hug-couple {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: coupleSqueeze 1.8s ease-in-out infinite;
+}
+
+.hug-message {
+  font-size: 1.08rem;
+  line-height: 1.8;
+  padding: 0 6px;
+}
+
+.hug-message strong {
+  color: #d94f88;
+}
+
+.hug-again {
+  margin-top: 12px;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff75a7, #f45d98);
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 6px 16px #e76c9b35;
+}
+
+.gift-sparkle {
+  display: inline-block;
+  animation: sparkle 1.4s ease-in-out infinite alternate;
+}
+
+@keyframes giftFloat {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+@keyframes surpriseIn {
+  from { opacity: 0; transform: translateY(18px) scale(.94); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.16); }
+}
+
+@keyframes coupleSqueeze {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.035); }
+}
+
+@keyframes sparkle {
+  from { opacity: .45; transform: scale(.85) rotate(-10deg); }
+  to { opacity: 1; transform: scale(1.15) rotate(10deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .baby-gift *,
+  .baby-gift *::before,
+  .baby-gift *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
   </style>
 </head>
 
@@ -429,7 +640,141 @@
         <div class="kiss-row" aria-hidden="true">😘 💋 💗 💋 😘</div>
       </div>
     </section>
+<!-- ===== Baby's Surprise Gift Box ===== -->
+<section class="baby-gift" id="babyGift">
+  <h2>🎁 One Little Gift for You, Baby</h2>
 
+  <p class="gift-intro">
+    I can't be beside you right now, so I made
+    something special just for you. 🥹💗
+  </p>
+
+  <button
+    class="gift-trigger"
+    id="giftTrigger"
+    type="button"
+    aria-expanded="false"
+    aria-controls="giftSurprise"
+  >
+    <span class="gift-box" aria-hidden="true">
+      <span class="gift-base"></span>
+      <span class="gift-ribbon"></span>
+      <span class="gift-lid"></span>
+      <span class="gift-bow"></span>
+    </span>
+
+    <span class="gift-tap-label" id="giftTapLabel">
+      Tap your gift to open it! 💝
+    </span>
+  </button>
+
+  <div class="gift-surprise" id="giftSurprise" aria-hidden="true">
+    <p>
+      <span class="gift-sparkle">✨</span>
+      <strong>Surprise, my Baby!</strong>
+      <span class="gift-sparkle">✨</span>
+    </p>
+
+    <!-- Cute cartoon couple hugging -->
+    <svg
+      class="hug-art"
+      viewBox="0 0 300 245"
+      role="img"
+      aria-label="A cute cartoon couple sharing a warm hug"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <linearGradient id="hugGirlDress" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#ff9bc4"/>
+          <stop offset="100%" stop-color="#f56eaa"/>
+        </linearGradient>
+        <linearGradient id="hugBoyShirt" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#9ecbff"/>
+          <stop offset="100%" stop-color="#6599ed"/>
+        </linearGradient>
+      </defs>
+
+      <g class="hug-heart" fill="#ff6f9f">
+        <path d="M45 54 C25 38 8 57 23 73 L45 94 L67 73 C82 56 63 38 45 54Z"/>
+        <path d="M250 45 C235 33 221 48 233 61 L250 77 L267 61 C279 48 265 33 250 45Z" fill="#ffc05c"/>
+        <path d="M150 18 C138 7 127 20 137 30 L150 42 L163 30 C173 20 162 7 150 18Z"/>
+      </g>
+
+      <g class="hug-couple">
+        <!-- Boy's hair -->
+        <path d="M87 91 C76 58 98 37 126 44 C153 38 170 61 158 92Z" fill="#55352f"/>
+        <!-- Boy's face -->
+        <ellipse cx="124" cy="81" rx="32" ry="36" fill="#ffd0ad"/>
+        <path d="M94 75 C91 49 110 38 131 44 C149 47 160 62 155 78 L145 65 L131 63 L115 69 L98 87Z" fill="#55352f"/>
+        <ellipse cx="113" cy="83" rx="2.8" ry="3.5" fill="#50362f"/>
+        <ellipse cx="137" cy="83" rx="2.8" ry="3.5" fill="#50362f"/>
+        <path d="M116 96 Q125 104 136 95" fill="none" stroke="#b65b68" stroke-width="2.5" stroke-linecap="round"/>
+        <ellipse cx="104" cy="94" rx="6" ry="3.5" fill="#ff9db0" opacity=".75"/>
+        <ellipse cx="145" cy="94" rx="6" ry="3.5" fill="#ff9db0" opacity=".75"/>
+
+        <!-- Boy's body -->
+        <path d="M92 119 Q124 104 153 121 L173 193 L76 193Z" fill="url(#hugBoyShirt)"/>
+        <path d="M110 119 L124 138 L139 119" fill="#fff" opacity=".85"/>
+
+        <!-- Girl's hair behind her face -->
+        <path d="M138 98 C130 61 151 40 179 49 C205 48 222 71 208 111 L198 139 L146 132Z" fill="#59362d"/>
+
+        <!-- Girl's face -->
+        <ellipse cx="178" cy="83" rx="31" ry="35" fill="#ffe0bd"/>
+        <path d="M147 79 C143 53 164 40 184 47 C205 48 214 65 207 86 L198 67 L178 61 L159 72 L151 93Z" fill="#59362d"/>
+        <path d="M151 65 Q130 79 143 110 L155 125 L158 96Z" fill="#59362d"/>
+        <path d="M201 65 Q221 84 208 111 L198 125 L198 91Z" fill="#59362d"/>
+        <ellipse cx="168" cy="85" rx="2.8" ry="3.5" fill="#50362f"/>
+        <ellipse cx="190" cy="85" rx="2.8" ry="3.5" fill="#50362f"/>
+        <path d="M168 98 Q179 106 190 97" fill="none" stroke="#b65b68" stroke-width="2.5" stroke-linecap="round"/>
+        <ellipse cx="158" cy="96" rx="6" ry="3.5" fill="#ff9db0" opacity=".8"/>
+        <ellipse cx="200" cy="96" rx="6" ry="3.5" fill="#ff9db0" opacity=".8"/>
+
+        <!-- Girl's dress -->
+        <path d="M153 121 Q180 105 205 125 L230 193 L135 193Z" fill="url(#hugGirlDress)"/>
+        <path d="M168 121 Q180 139 193 121" fill="none" stroke="#ffe2ee" stroke-width="4"/>
+
+        <!-- Arms wrapping around each other -->
+        <path d="M93 137 C75 145 84 172 115 174 L153 160" fill="none" stroke="#ffd0ad" stroke-width="15" stroke-linecap="round"/>
+        <path d="M212 139 C237 146 229 170 202 175 L174 159" fill="none" stroke="#ffe0bd" stroke-width="15" stroke-linecap="round"/>
+        <path d="M102 145 C127 165 154 168 179 150" fill="none" stroke="#ffb8d2" stroke-width="12" stroke-linecap="round"/>
+        <path d="M202 146 C181 166 151 177 123 155" fill="none" stroke="#7ca9f1" stroke-width="12" stroke-linecap="round"/>
+
+        <!-- Tiny heart on their hug -->
+        <path d="M151 145 C144 137 135 145 142 153 L151 162 L160 153 C167 145 158 137 151 145Z" fill="#fff1a8"/>
+      </g>
+
+      <g fill="#ff94ba">
+        <circle cx="75" cy="115" r="3"/>
+        <circle cx="230" cy="117" r="4"/>
+        <circle cx="64" cy="163" r="3"/>
+        <circle cx="241" cy="159" r="3"/>
+      </g>
+      <text x="150" y="224" font-size="15" text-anchor="middle" fill="#d94f88" font-weight="700">
+        one big hug, just for you 💗
+      </text>
+    </svg>
+
+    <div class="hug-message">
+      <p>
+        If I were there right now, Baby, I'd hold you close
+        and never rush to let go. 🫂💕
+      </p>
+      <p>
+        This little hug is a reminder that
+        <strong>you are loved, you matter, and I want us to keep fixing things together.</strong>
+      </p>
+      <p>Imagine this is me hugging you tight. Uummmaaahhh! 😘</p>
+    </div>
+
+    <button class="hug-again" id="hugAgain" type="button">
+      One more hug, please! 🫂
+    </button>
+  </div>
+</section>
+<!-- ===== End of Surprise Gift Box ===== -->
+
+    
     <section class="gallery-section" aria-labelledby="gallery-title">
       <div class="section-heading">
         <h2 id="gallery-title">Little Pieces of You 📸</h2>
@@ -542,7 +887,7 @@
 
       <p class="photo-note">
         💗 You are the unexpected gift from the god , i never ever want to lose you from my life.
-        i treat you like My Child , i respect you like my mom , i care for you like a wife ,
+        i treat you like my baby , i respect you like my mom , i care for you like my wife ,
         i trust you like my dad . what ever happens we only need to fix it baby . 💗
       </p>
     </section>
@@ -563,6 +908,45 @@
     const tinyText = document.getElementById("tinyText");
     const surprise = document.getElementById("surprise");
 
+  const babyGift = document.getElementById("babyGift");
+  const giftTrigger = document.getElementById("giftTrigger");
+  const giftTapLabel = document.getElementById("giftTapLabel");
+  const giftSurprise = document.getElementById("giftSurprise");
+  const hugAgain = document.getElementById("hugAgain");
+
+  if (
+    babyGift &&
+    giftTrigger &&
+    giftTapLabel &&
+    giftSurprise &&
+    hugAgain
+  ) {
+    giftTrigger.addEventListener("click", function () {
+      const isOpen = babyGift.classList.toggle("is-open");
+
+      giftTrigger.setAttribute("aria-expanded", String(isOpen));
+      giftSurprise.setAttribute("aria-hidden", String(!isOpen));
+
+      giftTapLabel.textContent = isOpen
+        ? "Your gift is open! 💗"
+        : "Tap your gift to open it! 💝";
+    });
+
+    hugAgain.addEventListener("click", function () {
+      const animations = babyGift.querySelectorAll(
+        ".hug-couple, .hug-heart"
+      );
+
+      animations.forEach(function (element) {
+        element.style.animation = "none";
+        void element.getBoundingClientRect();
+        element.style.animation = "";
+      });
+
+      hugAgain.textContent = "Sending you another big hug! 💗🫂";
+    });
+  }
+    
     const playfulMessages = [
       "Aiyo Baby, almost caught me! 🙈",
       "This NO button has legs! 😂",
